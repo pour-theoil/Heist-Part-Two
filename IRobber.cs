@@ -5,9 +5,6 @@ namespace heistpart2
         string Name {get; set; }
         int SkillLevel {get; set; }
         int PercentageCut {get; set; } 
-        void PreformSkill(Bank bank)
-        {
-            //No return
-        }
+        void PreformSkill(Bank bank);
     }
 }
