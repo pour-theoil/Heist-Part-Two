@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace heistpart2
 {
@@ -127,39 +129,91 @@ namespace heistpart2
             {
                 if (newbank.SecureityGaurdScore > newbank.VaultScore)
                 {
-                    Console.WriteLine("Most Secure: Alarm     Lease Secure: Vault");
+                    Console.WriteLine("Most Secure: Alarm     Least Secure: Vault");
                 }
                 else
                 {
-                    Console.WriteLine("Most Secure: Alarm     Lease Secure: Gaurd");
+                    Console.WriteLine("Most Secure: Alarm     Least Secure: Gaurd");
                 }
             }
             else if (newbank.SecureityGaurdScore > newbank.AlarmScore && newbank.SecureityGaurdScore > newbank.AlarmScore)
             {
                 if (newbank.VaultScore > newbank.AlarmScore)
                 {
-                    Console.WriteLine("Most Secure: Gaurd     Lease Secure: Alarm");
+                    Console.WriteLine("Most Secure: Gaurd     Least Secure: Alarm");
                 }
                 else
                 {
-                    Console.WriteLine("Most Secure: Gaurd     Lease Secure: Vault");
+                    Console.WriteLine("Most Secure: Gaurd     Least Secure: Vault");
                 }
             }
             else
             {
                 if (newbank.SecureityGaurdScore > newbank.AlarmScore)
                 {
-                    Console.WriteLine("Most Secure: Vault     Lease Secure: Gaurd");
-                }  
-                else{
-                    Console.WriteLine("Most Secure: Vault     Lease Secure: Alarm");
+                    Console.WriteLine("Most Secure: Vault     Least Secure: Gaurd");
+                }
+                else
+                {
+                    Console.WriteLine("Most Secure: Vault     Least Secure: Alarm");
                 }
             }
-            Console.WriteLine(newbank.AlarmScore);
-            Console.WriteLine(newbank.SecureityGaurdScore);
-            Console.WriteLine(newbank.VaultScore);
-            Console.WriteLine(newbank.CashOnHand);
 
+            List<IRobber> crew = new List<IRobber>();
+
+            while (true)
+            {
+                Console.WriteLine("Build your crew");
+
+
+                int k = 0;
+                var list3 = rolodex.Except(crew).ToList();
+                foreach (IRobber l in list3)
+                {
+
+                    Console.WriteLine($@"Name: {l.Name}
+Skill: {l.SkillLevel}
+Precentage Cut: {l.PercentageCut}
+Index: {k}
+");
+                    k++;
+                }
+                Console.WriteLine("Enter the index of the crew you would like to add: ");
+                string member = Console.ReadLine();
+                if (member == "")
+                {
+                    break;
+                }
+                int Member;
+                while (true)
+                {
+
+                    if (int.TryParse(member, out Member) && Member >= 0)
+                    {
+                        break;
+                    }
+                    Console.WriteLine("Enter the index of the crew you would like to add: ");
+                    member = Console.ReadLine();
+                }
+
+                int cut = 0;
+                foreach (IRobber r in crew)
+                {
+                    cut += r.PercentageCut;
+                }
+                cut = cut +  list3[Member].PercentageCut;
+                if (cut <100)
+                {
+
+                crew.Add(list3[Member]);
+                }
+                else
+                {
+                    Console.WriteLine("You cannot afford to pay them add a different member");
+                }
+
+            }
         }
     }
+}
 }
