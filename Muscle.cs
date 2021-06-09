@@ -12,11 +12,12 @@ namespace  heistpart2
         public void PreformSkill(Bank bank)
         {
             bank.SecureityGaurdScore = bank.SecureityGaurdScore - SkillLevel;
-            Console.WriteLine($"{Name} is picking the lock. Decreased by {SkillLevel}");
+            Console.WriteLine($"{Name} is tackling the gaurds. Decreased by {SkillLevel}");
             if(bank.SecureityGaurdScore <= 0)
             {
-                Console.WriteLine($"{Name} has opened the Vault");
+                Console.WriteLine($"{Name} tied up the gaurds!");
             }
+                Console.WriteLine("");
         }    
     }
 }

@@ -11,11 +11,12 @@ public string Name {get; set; }
         public void PreformSkill(Bank bank)
         {
             bank.AlarmScore = bank.AlarmScore - SkillLevel;
-            Console.WriteLine($"{Name} is picking the lock. Decreased by {SkillLevel}");
+            Console.WriteLine($"{Name} is hacking the security system. Decreased by {SkillLevel}");
             if(bank.AlarmScore <= 0)
             {
-                Console.WriteLine($"{Name} has opened the Vault");
+                Console.WriteLine($"{Name} has cracked the security");
             }
+            Console.WriteLine("");
         }    
     }
 }
