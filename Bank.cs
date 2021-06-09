@@ -8,22 +8,11 @@ namespace heistpart2
         public int SecureityGaurdScore {get; set; }
         public bool IsSecure()
         {
-            if(CashOnHand > 0)
+            if (AlarmScore > 0 || VaultScore > 0 || SecureityGaurdScore > 0)
             {
                 return true;
             }
-            else if ( AlarmScore > 0)
-            {
-                return true;
-            }
-            else if ( VaultScore > 0)
-            {
-                return true;
-            }
-            else if ( SecureityGaurdScore > 0)
-            {
-                return true;
-            }
+            
             else return false;
         }
     }

@@ -16,7 +16,9 @@ public string Name {get; set; }
             if(bank.VaultScore <= 0)
             {
                 Console.WriteLine($"{Name} has opened the Vault");
+                
             }
+            Console.WriteLine("");
         }    
     
     }
